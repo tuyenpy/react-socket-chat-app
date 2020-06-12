@@ -1,10 +1,22 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from 'react-router-dom';
+
 import './App.css';
 
+import Test from './component/Test/Test';
+
 const App = () => {
-  return <div className="App">
-      <h1>Hello world</h1>
-  </div>
+  return <BrowserRouter>
+    <div className="App">
+      <Switch>
+        <Route exact path="/" component={Test} />
+      </Switch>
+    </div>
+  </BrowserRouter>
 }
 
 export default App;
