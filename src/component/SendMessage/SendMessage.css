@@ -1,5 +1,8 @@
 .SendMessage {
   display: flex;
+  position: fixed;
+  top: 90vh;
+  width: 70vw;
   justify-content: space-between;
   align-items: center;
   border: 2px solid #CBCED1;

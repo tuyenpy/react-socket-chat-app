@@ -1,13 +1,22 @@
 import React from 'react';
+import { withCookies } from 'react-cookie';
+import { BrowserRouter } from 'react-router-dom';
+
 import './App.css';
+import Authencation from './component/Authencation/Authencation';
+import AppContainer from './component/AppContainer/AppContainer';
 
-import Menu from './component/Menu/Menu';
 
+const App = (props) => {
+  let { cookies } = props;
+  return(
+    <BrowserRouter>
+      <div className="App">
+        <AppContainer />
 
-const App = () => {
-  return <div className="App">
-    <Menu />
-  </div>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default withCookies(App);
