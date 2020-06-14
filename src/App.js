@@ -1,13 +1,10 @@
 import React from 'react';
 import './App.css';
-
-import MessageList from './component/MessageList/MessageList';
-import SendMessage from './component/SendMessage/SendMessage';
+import ChannelList from './component/ChannelList/ChannelList';
 
 const App = () => {
   return <div className="App">
-      <MessageList />
-      <SendMessage />
+    <ChannelList />
   </div>
 }
 
