@@ -1,0 +1,10 @@
+.Menu {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  background-color: #2F343D;
+}
+
+.Menu *:not(:first-child) {
+  margin-left: 10px;
+}

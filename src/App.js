@@ -1,18 +1,12 @@
 import React from 'react';
 import './App.css';
-import ChannelList from './component/ChannelList/ChannelList';
-import HigherOrderChannelComponent from './component/HigherOrderChannelComponent/HigherOrderChannelComponent';
 
-const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList);
-const WithUnreadComponent = HigherOrderChannelComponent({title: "Unread"}, ChannelList);
-const WithPrivateGroupComponent = HigherOrderChannelComponent({title: "Private Group"}, ChannelList)
+import Menu from './component/Menu/Menu';
 
 
 const App = () => {
   return <div className="App">
-    <WithUnreadComponent />
-    <WithChannelComponent />
-    <WithPrivateGroupComponent />
+    <Menu />
   </div>
 }
 
