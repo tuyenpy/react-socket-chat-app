@@ -4,11 +4,11 @@ import './ChannelList.css';
 import ChannelItem from '../ChannelItem/ChannelItem';
 
 const ChannelList = (props) => {
-  let { channels } = props;
+  let { channels, option } = props;
   return (
     <div className="ChannelList">
       <div className="ChannelList-header">
-        <p className="title">Channels</p>
+        <p className="title">{option.title}</p>
         <p>{channels.length}</p>
       </div>
       <div className="ChannelList-room">
