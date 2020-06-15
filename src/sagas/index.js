@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { put, all, takeLatest } from 'redux-saga/effects';
 
-const createUserUri = "http://localhost:5000/api/user/signup";
-const loginUserUri = "http://localhost:5000/api/user/login";
-const getUserUri = "http://localhost:5000/api/user";
-const getRoomUri = "http://localhost:5000/api/room";
-const createRoomUri = "http://localhost:5000/api/room/create"
+const createUserUri = "https://chat-app-vietnam.herokuapp.com/api/user/signup";
+const loginUserUri = "https://chat-app-vietnam.herokuapp.com/api/user/login";
+const getUserUri = "https://chat-app-vietnam.herokuapp.com/api/user";
+const getRoomUri = "https://chat-app-vietnam.herokuapp.com/api/room";
+const createRoomUri = "https://chat-app-vietnam.herokuapp.com/api/room/create"
 
 //get room action
 function* getRoom() {
     let res = yield axios.get(getRoomUri);
+    console.log(res);
     yield put({ type: 'DATA RECEIVED', data: res.data })
 }
 function* actionWatcher() {

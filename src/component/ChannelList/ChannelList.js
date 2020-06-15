@@ -20,6 +20,7 @@ let ChannelList = (props) => {
   if (newRoom.rooms) {
     var rooms = newRoom.rooms.length && newRoom.rooms;
   }
+  console.log(newRoom);
   return (
     <div className="ChannelList">
       <div className="ChannelList-header">
