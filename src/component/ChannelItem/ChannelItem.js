@@ -11,13 +11,16 @@ const colorGird = [
 ];
 
 const ChannelItem = (props) => {
-  let { nameRoom } = props;
-  let stateColor = Math.floor((Math.random()/2 * 10));
+  let { nameRoom, name } = props;
+  let stateColor = Math.floor((Math.random() / 2 * 10));
+  let href = `/?room=${name}`;
   return (
-    <div className="ChannelItem">
-      <p className={colorGird[stateColor]}>{nameRoom[0]}</p>
-      <p>{`# ${nameRoom}`}</p>
-    </div>
+    <a href={href} className="roomLink">
+      <div className="ChannelItem">
+        <p className={colorGird[stateColor]}>{nameRoom[0]}</p>
+        <p>{`# ${name || nameRoom}`}</p>
+      </div>
+    </a>
   )
 }
 

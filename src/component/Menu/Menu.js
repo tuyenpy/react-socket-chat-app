@@ -43,7 +43,7 @@ const Menu = () => {
         
       </div>
       <div className="Menu-more">
-        <MoreVertIcon style={styleIcon}/>
+        <MoreVertIcon style={styleIcon} />
         
       </div>
 

@@ -15,6 +15,7 @@ const styleIcon = {
 
 let Login = (props) => {
   let { loginUser, cookies, newUser, } = props;
+  
   // onClick
   const onLogin = (e) => {
     e.preventDefault();

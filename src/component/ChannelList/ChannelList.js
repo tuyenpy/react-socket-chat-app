@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getRoom } from '../../actions/index';
+
 import './ChannelList.css';
 
 import ChannelItem from '../ChannelItem/ChannelItem';
 
-const ChannelList = (props) => {
-  let { channels, option } = props;
+let ChannelList = (props) => {
+  let { newRoom, getRoom, option, channels } = props;
+
+  //get room
+  useEffect(() => {
+
+    getRoom();
+
+  }, [getRoom]);
+
+  //set channel
+  if (newRoom.rooms) {
+    var rooms = newRoom.rooms.length && newRoom.rooms;
+  }
   return (
     <div className="ChannelList">
       <div className="ChannelList-header">
         <p className="title">{option.title}</p>
-        <p>{channels.length}</p>
+        <p>{
+          rooms ? (
+            rooms.length
+          ) : (
+              channels.length
+            )
+        }</p>
       </div>
       <div className="ChannelList-room">
         {
-          channels.map((channel, index) => <ChannelItem {...channel} key={index} />)
+          rooms ? (
+            rooms.map((channel, index) => <ChannelItem {...channel} key={index} />)
+
+          ) : (
+
+              channels.map((channel, index) => <ChannelItem {...channel} key={index} />)
+            )
         }
       </div>
     </div>
@@ -42,4 +69,15 @@ ChannelList.defaultProps = {
     },
   ]
 }
+
+const mapStateToProp = (state) => ({
+  newRoom: state.rooms
+})
+
+const mapDispatchToProp = {
+  getRoom: getRoom
+}
+
+ChannelList = connect(mapStateToProp, mapDispatchToProp)(ChannelList);
+
 export default ChannelList;

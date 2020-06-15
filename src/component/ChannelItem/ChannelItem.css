@@ -1,3 +1,7 @@
+.roomLink {
+  text-decoration: none;
+}
+
 .ChannelItem {
   display: flex;
   align-items: center;
@@ -6,6 +10,13 @@
   color: #ffffff;
   font-weight: 700;
 }
+
+.ChannelItem:hover {
+  box-shadow: 0 0 3px #ffffff;
+  transform: scale(1.01);
+  transition: 0.5s;
+}
+
 
 .ChannelItem p:first-child {
   width: 35px;

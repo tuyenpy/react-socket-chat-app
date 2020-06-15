@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withCookies } from 'react-cookie';
+
+
+import { getUser } from '../../actions/index';
+import socket from '../../socket/index';
+
 import './AppContainer.css';
 import Menu from '../Menu/Menu';
 import HigherOrderChannelComponent from '../HigherOrderChannelComponent/HigherOrderChannelComponent';
 import ChannelList from '../ChannelList/ChannelList';
-import MessageList from '../MessageList/MessageList';
-import SendMessage from '../SendMessage/SendMessage';
+import Chat from '../Chat/Chat';
 
 const WithUnreadComponent = HigherOrderChannelComponent({title: "Unread"}, ChannelList);
 const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList);
 const WithPrivateComponent = HigherOrderChannelComponent({title: "Private Group"}, ChannelList);
 
 
-const AppContainer = () => {
+let AppContainer = (props) => {
+  let { cookies, getUser, location } = props;
+
+  //getUser
+  useEffect(() => {
+    getUser(cookies.get('userID'))
+  })
+
   return(
     <div className="AppContainer">
       <div className="AppContainer-sideleft">
@@ -21,11 +34,16 @@ const AppContainer = () => {
         <WithPrivateComponent />
       </div>
       <div className="AppContainer-sideright">
-        <MessageList />
-        <SendMessage />
+        <Chat socket={socket} location={location}/>
       </div>
     </div>
   )
 }
 
-export default AppContainer;
+const mapDispatchToProp = {
+  getUser: getUser
+}
+
+AppContainer = connect(null, mapDispatchToProp)(AppContainer);
+
+export default withCookies(AppContainer);

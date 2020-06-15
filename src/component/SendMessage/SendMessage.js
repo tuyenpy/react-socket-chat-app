@@ -1,13 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import './SendMessage.css';
 import SendIcon from '@material-ui/icons/Send';
 
 const refInput = React.createRef();
 
-const SendMessage = () => {
+let SendMessage = (props) => {
+  let { user, socket } = props;
   const onSend = (e) => {
     e.preventDefault();
-    alert(refInput.current.value);
+    socket.emit('send-message', {
+      userName: user.user.name,
+      text: refInput.current.value
+    })
   }
   return (
     <div className="SendMessage">
@@ -24,5 +30,11 @@ const SendMessage = () => {
     </div>
   )
 }
+
+const mapStateToProp = (state) => ({
+  user: state.user
+})
+
+SendMessage = connect(mapStateToProp, null)(SendMessage);
 
 export default SendMessage;
