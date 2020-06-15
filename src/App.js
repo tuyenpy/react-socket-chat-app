@@ -12,7 +12,14 @@ const App = (props) => {
   return(
     <BrowserRouter>
       <div className="App">
-        <AppContainer />
+        {
+          cookies.get('userID') ? (
+            <AppContainer />
+
+          ) : (
+            <Authencation />
+          )
+        }
 
       </div>
     </BrowserRouter>
