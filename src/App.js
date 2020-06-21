@@ -1,6 +1,6 @@
 import React from 'react';
 import { withCookies } from 'react-cookie';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.css';
 import Authencation from './component/Authencation/Authencation';
@@ -14,9 +14,7 @@ const App = (props) => {
       <div className="App">
         {
           cookies.get('userID') ? (
-            <Switch>
-              <Route exact path="/" component={AppContainer} />
-            </Switch>
+            <AppContainer />
 
           ) : (
               <Authencation />

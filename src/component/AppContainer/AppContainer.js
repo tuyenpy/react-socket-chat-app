@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withCookies } from 'react-cookie';
 
@@ -15,7 +16,7 @@ import Chat from '../Chat/Chat';
 const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList);
 
 let AppContainer = (props) => {
-  let { cookies, getUser, location } = props;
+  let { cookies, getUser } = props;
 
   //getUser
   useEffect(() => {
@@ -29,7 +30,11 @@ let AppContainer = (props) => {
         <WithChannelComponent />
       </div>
       <div className="AppContainer-sideright">
-        <Chat socket={socket} location={location}/>
+        <Switch>
+          <Route exact path="/" render={({location}) =>
+           <Chat location={location} socket={socket}/>}/>
+        </Switch>
+        
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Authencation.css';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route } from 'react-router-dom';
 
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';

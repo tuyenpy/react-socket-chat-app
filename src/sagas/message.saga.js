@@ -21,9 +21,7 @@ export function* getMessageActionWatcher() {
 
 //create message action
 function* sendMessages(disp) {
-  console.log(disp);
   let res = yield axios.post(sendMessage, disp.data);
-  console.log(res);
   yield put({type: 'MESSAGE RECEIVED', data: res.data})
 }
 
