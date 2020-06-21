@@ -1,5 +1,4 @@
-const url = "https://chat-app-vietnam.herokuapp.com/api";
-// const url = "http://localhost:5000/api";
+const url = "https://chatapp-room.herokuapp.com/api";
 const createUserUri = `${url}/user/signup`;
 const loginUserUri = `${url}/user/login`;
 const getUserUri = `${url}/user`;

@@ -7,14 +7,13 @@ const refInput = React.createRef();
 
 let AddRoom = (props) => {
   let {socket, setAddRoom, createRoom} = props;
+
   const onAddRoom = (e) => {
     e.preventDefault();
-    if (refInput.current.value.trim() !=="") {
+    if (refInput.current.value.trim() !== "") {
       createRoom(refInput.current.value);
       socket.emit('add-channel');
-
     }
-    console.log('fix');
     setAddRoom(false);
   }
   return <div className="AddRoom">
