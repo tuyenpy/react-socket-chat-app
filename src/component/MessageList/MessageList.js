@@ -7,6 +7,7 @@ import MessageItem from '../MessageItem/MessageItem';
 
 let MessageList = (props) => {
   let {socket, room,  messages, getMessage} = props;
+
   //get message in room
   useEffect(() => {
     socket.on('room-accept', (data) => {

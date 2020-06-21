@@ -17,7 +17,7 @@ export function* actionWatcher() {
 
 //create room action
 function* createRoom(disp) {
-  let res = yield axios.post(createRoomUri, disp.data)
+  let res = yield axios.post(createRoomUri, {name: disp.data});
   yield put({type: 'ROOM RECEIVED', data: res.data})
 }
 

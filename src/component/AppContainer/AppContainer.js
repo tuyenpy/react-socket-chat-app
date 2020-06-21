@@ -13,7 +13,7 @@ import HigherOrderChannelComponent from '../HigherOrderChannelComponent/HigherOr
 import ChannelList from '../ChannelList/ChannelList';
 import Chat from '../Chat/Chat';
 
-const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList);
+const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList, socket);
 
 let AppContainer = (props) => {
   let { cookies, getUser } = props;
@@ -26,7 +26,7 @@ let AppContainer = (props) => {
   return(
     <div className="AppContainer">
       <div className="AppContainer-sideleft">
-        <Menu />
+        <Menu socket={socket}/>
         <WithChannelComponent />
       </div>
       <div className="AppContainer-sideright">

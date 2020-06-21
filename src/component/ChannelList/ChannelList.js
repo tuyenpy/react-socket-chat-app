@@ -7,12 +7,18 @@ import './ChannelList.css';
 import ChannelItem from '../ChannelItem/ChannelItem';
 
 let ChannelList = (props) => {
-  let { rooms, getRoom, option } = props;
-
+  let { rooms, getRoom, option, socket } = props;
   //get room
   useEffect(() => {
     getRoom();
   }, [getRoom]);
+
+  //get new channel created
+  useEffect(() => {
+    socket.on('new-channel', () => {
+      getRoom();
+    })
+  }, [getRoom, socket])
 
   return (
     <div className="ChannelList">
