@@ -1,71 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import socket from '../../socket/index';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getMessage } from '../../actions/message.action';
 
 import './MessageList.css';
 import MessageItem from '../MessageItem/MessageItem';
 
-const MessageList = (props) => {
-  let { messages } = props;
-  let [newMessages, setNewMessages] = useState([]);
+let MessageList = (props) => {
+  let {socket, room,  messages, getMessage} = props;
+  //get message in room
+  useEffect(() => {
+    socket.on('room-accept', (data) => {
+      getMessage(room);
+    })
+
+  }, [getMessage, room, socket]);
 
   //update new message
   useEffect(() => {
-    socket.on('history-message', data => {
-      setNewMessages(data);
+    socket.on('new-message', (data) => {
+      getMessage(room)
     })
-
-  }, [])
-
-  useEffect(() => {
-    socket.on('new-message', data => {
-      let newMsg = [...newMessages, data];
-      setNewMessages(newMsg);
-    })
-  })
+  }, [getMessage, room, socket]);
 
   return(
     <div className="MessageList">
       {
-        newMessages ? (
-          newMessages.map((message, index) => 
-        <MessageItem message={message} key={index} />)
-        ) : (
-          messages.map((message, index) => 
+         messages.messages &&  messages.messages.map((message, index) => 
             <MessageItem message={message} key={index} />)
-
-        )
       }
     </div>
   )
 }
 
-MessageList.defaultProps = {
-  messages: [
-    {
-      userName: "viya.sommerville",
-      text: "message: what ?",
-      date: "9.45PM"
-    },
-    {
-      userName: "viya.sommerville",
-      text: "message: what ?",
-      date: "9.45PM"
-    },
-    {
-      userName: "viya.sommerville",
-      text: "message: what ?",
-      date: "9.45PM"
-    },
-    {
-      userName: "viya.sommerville",
-      text: "message: what ?",
-      date: "9.45PM"
-    },
-    {
-      userName: "viya.sommerville",
-      text: "message: what ?",
-      date: "9.45PM"
-    }
-  ]
+const mapStateToProp = (state) => ({
+  messages: state.messages
+})
+
+const mapDispatchToProp = {
+  getMessage: getMessage
 }
+
+MessageList = connect(mapStateToProp, mapDispatchToProp)(MessageList);
+
 export default MessageList;

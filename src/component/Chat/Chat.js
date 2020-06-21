@@ -7,14 +7,17 @@ import SendMessage from '../SendMessage/SendMessage';
 
 const Chat = (props) => {
   let { socket, location } = props;
+  let { room } = queryString.parse(location.search);
+
   useEffect(() => {
-    let room = queryString.parse(location.search);
-    socket.emit('join', room)
-  })
+    if (room) {
+      socket.emit('join', room);
+    }
+  },[room, socket])
   return (
     <div className="Chat">
-      <MessageList socket={socket} />
-      <SendMessage socket={socket} />
+      <MessageList socket={socket} room={room} />
+      <SendMessage socket={socket} room={room}/>
     </div>
   )
 }

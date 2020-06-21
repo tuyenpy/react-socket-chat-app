@@ -21,12 +21,4 @@ const MessageItem = ({ message }) => {
   )
 }
 
-MessageItem.defaultProps = {
-  message: {
-    userName: "viya.sommerville",
-    text: "message: what ?",
-    date: "9.45PM"
-  }
-}
-
 export default MessageItem;

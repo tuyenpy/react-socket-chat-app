@@ -12,10 +12,7 @@ import HigherOrderChannelComponent from '../HigherOrderChannelComponent/HigherOr
 import ChannelList from '../ChannelList/ChannelList';
 import Chat from '../Chat/Chat';
 
-const WithUnreadComponent = HigherOrderChannelComponent({title: "Unread"}, ChannelList);
 const WithChannelComponent = HigherOrderChannelComponent({title: "Channel"}, ChannelList);
-const WithPrivateComponent = HigherOrderChannelComponent({title: "Private Group"}, ChannelList);
-
 
 let AppContainer = (props) => {
   let { cookies, getUser, location } = props;
@@ -29,9 +26,7 @@ let AppContainer = (props) => {
     <div className="AppContainer">
       <div className="AppContainer-sideleft">
         <Menu />
-        <WithUnreadComponent />
         <WithChannelComponent />
-        <WithPrivateComponent />
       </div>
       <div className="AppContainer-sideright">
         <Chat socket={socket} location={location}/>

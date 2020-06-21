@@ -1,28 +1,13 @@
 import { combineReducers } from 'redux';
 
-const roomReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'GET ROOM': return state;
-        case 'DATA RECEIVED': return action.data;
-        default:
-            return state;
-    }
-}
-
-const userReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'GET USER': return state;
-        case 'USER RECEIVED': return action.data;
-        default:
-            return state;
-    }
-}
-
-
+import roomReducer from './room.reducer';
+import userReducer from './use.reducer';
+import messageReducer from './message.reducer';
 
 const rootReducer = combineReducers({
     rooms: roomReducer,
     user: userReducer,
+    messages: messageReducer
 });
 
 export default rootReducer;
