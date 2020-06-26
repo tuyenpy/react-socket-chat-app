@@ -27,7 +27,7 @@ let Signup = (props) => {
     password
   } = props.values;
 
-  let [ , setCookie, ] = useCookies(['userID']);
+  let [, setCookie,] = useCookies(['userID']);
 
   const onSignup = async (e) => {
     e.preventDefault();
@@ -60,6 +60,11 @@ let Signup = (props) => {
           <Redirect to="/" />
         ) : (
             <form className="Signup-form">
+              <div className="Signup-form-icon">
+                <span>
+                  <LockOpenOutlinedIcon style={styleIcon} />
+                </span>
+              </div>
               {
                 errors ? (
                   <div className="error">
@@ -72,11 +77,6 @@ let Signup = (props) => {
                   </div>
                 ) : (<></>)
               }
-              <div className="Signup-form-icon">
-                <span>
-                  <LockOpenOutlinedIcon style={styleIcon} />
-                </span>
-              </div>
               <div className="Signup-form-group">
                 <label>Name</label>
                 <input type="text"
@@ -127,17 +127,15 @@ let Signup = (props) => {
               </div>
               <div className="Signup-form-button">
                 {
-                  load &&
-                  <button onClick={onSignup}>SignUp</button>
+                  (load || errors) ? (
+                    <button onClick={onSignup}>SignUp</button>
+                  ) : (
+                      <button onClick={onSignup}><i
+                        className="fa fa-refresh fa-spin"
+                        style={{ marginRight: "5px" }}
+                      />SignUp</button>
+                    )
                 }
-                {
-                  !load &&
-                  <button onClick={onSignup}><i
-                    className="fa fa-refresh fa-spin"
-                    style={{ marginRight: "5px" }}
-                  />SignUp</button>
-                }
-
               </div>
               <div className="Signup-form-link">
                 <a href="/">Login</a>

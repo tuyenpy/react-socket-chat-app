@@ -15,11 +15,12 @@ const styleIcon = {
 
 let Login = (props) => {
   let { loginUser, newUser } = props;
-  let [ , setCookie, ] = useCookies(['userID']);
+  let [, setCookie,] = useCookies(['userID']);
   let [state, setState] = useState(true);
   // onClick
   const onLogin = (e) => {
     e.preventDefault();
+    if (!refEmail.current.value || !refPassword.current.value) return;
     loginUser({
       email: refEmail.current.value,
       password: refPassword.current.value
@@ -43,6 +44,12 @@ let Login = (props) => {
         !_id ? (
           <div className="Login">
             <form className="Login-form">
+              <div className="Login-form-icon">
+                <span>
+                  <VpnKeyOutlinedIcon style={styleIcon} />
+
+                </span>
+              </div>
               {
                 errors ? (
                   <div className="error">
@@ -54,12 +61,7 @@ let Login = (props) => {
                   </div>
                 ) : (<></>)
               }
-              <div className="Login-form-icon">
-                <span>
-                  <VpnKeyOutlinedIcon style={styleIcon} />
 
-                </span>
-              </div>
               <div className="Login-form-group">
                 <label>Email</label>
                 <input type="email"
@@ -75,16 +77,17 @@ let Login = (props) => {
                 />
               </div>
               <div className="Login-form-button">
+                {
+                  (state || errors) ? (
+                    <button onClick={onLogin}>Login</button>
 
-                {
-                  state &&
-                  <button onClick={onLogin}>Login</button>
-                }
-                {
-                  !state && <button onClick={onLogin}><i
-                    className="fa fa-refresh fa-spin"
-                    style={{ marginRight: "5px" }}
-                  />Loading</button>
+                  ) : (
+                      <button onClick={onLogin}><i
+                        className="fa fa-refresh fa-spin"
+                        style={{ marginRight: "5px" }}
+                      />Loading</button>
+
+                    )
                 }
               </div>
               <div className="Login-form-link">
