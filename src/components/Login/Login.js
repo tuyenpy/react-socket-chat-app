@@ -1,6 +1,6 @@
-import React from 'react';
-import { withCookies } from 'react-cookie';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions';
 import './Login.css';
@@ -14,8 +14,9 @@ const styleIcon = {
 }
 
 let Login = (props) => {
-  let { loginUser, cookies, newUser, } = props;
-  
+  let { loginUser, newUser } = props;
+  let [ , setCookie, ] = useCookies(['userID']);
+  let [state, setState] = useState(true);
   // onClick
   const onLogin = (e) => {
     e.preventDefault();
@@ -23,24 +24,24 @@ let Login = (props) => {
       email: refEmail.current.value,
       password: refPassword.current.value
     });
+    setState(false);
+  }
+  // if login success
+  if (newUser.user) {
+    var { _id } = newUser.user;
+    setCookie('userID', _id);
   }
 
   //set cookies when the user successfully login
-  if (newUser.user) {
-    let { _id } = newUser.user;
-    cookies.set('userID', _id);
-  }
 
   if (newUser.errors) {
     var { errors } = newUser;
   }
   return (
-    <div className="Login">
+    <>
       {
-        cookies.get('userID') ? (
-          <Redirect to="/" />
-        ) : (
-
+        !_id ? (
+          <div className="Login">
             <form className="Login-form">
               {
                 errors ? (
@@ -74,16 +75,29 @@ let Login = (props) => {
                 />
               </div>
               <div className="Login-form-button">
-                <button onClick={onLogin}>Login</button>
+
+                {
+                  state &&
+                  <button onClick={onLogin}>Login</button>
+                }
+                {
+                  !state && <button onClick={onLogin}><i
+                    className="fa fa-refresh fa-spin"
+                    style={{ marginRight: "5px" }}
+                  />Loading</button>
+                }
               </div>
               <div className="Login-form-link">
                 <a href="/forgotpassword">Forgot password?</a>
                 <a href="/signup">Sign Up</a>
               </div>
             </form>
+          </div>
+        ) : (
+            <Redirect to="/" />
           )
       }
-    </div>
+    </>
   )
 }
 
@@ -97,4 +111,4 @@ const mapDispatchToProp = {
 
 Login = connect(mapStateToProp, mapDispatchToProp)(Login);
 
-export default withCookies(Login);
+export default Login;

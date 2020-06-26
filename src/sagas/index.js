@@ -3,7 +3,8 @@ import { all } from 'redux-saga/effects';
 import {
     createUserActionWatcher,
     loginUserActionWatcher,
-    getUserActionWatcher
+    getUserActionWatcher,
+    logoutUserActionWatcher
 } from './user.saga';
 import {
     actionWatcher,
@@ -22,6 +23,7 @@ export default function* rootSaga() {
         createRoomActionWatcher(),
         createUserActionWatcher(),
         loginUserActionWatcher(),
+        logoutUserActionWatcher(),
         getUserActionWatcher(),
         getMessageActionWatcher(),
         sendMessageActionWatcher()

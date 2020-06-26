@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import {
   createRoomUri,
   getRoomUri
-} from '../config/url.config';
+} from '../configs/url.config';
 
 //get room action
 function* getRoom() {

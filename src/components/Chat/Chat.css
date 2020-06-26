@@ -1,0 +1,8 @@
+.Chat > p {
+  background-color: #2F343D;
+  padding: 3px;
+  color: #ffffff;
+  text-align: center;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}

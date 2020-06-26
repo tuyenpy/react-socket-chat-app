@@ -1,4 +1,5 @@
-const url = "https://chatapp-room.herokuapp.com/api";
+// const url = "https://chatapp-room.herokuapp.com/api";
+const url=process.env.REACT_APP_API;
 const createUserUri = `${url}/user/signup`;
 const loginUserUri = `${url}/user/login`;
 const getUserUri = `${url}/user`;

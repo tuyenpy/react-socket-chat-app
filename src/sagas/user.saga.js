@@ -5,7 +5,7 @@ import {
     createUserUri,
     loginUserUri,
     getUserUri,
-  } from '../config/url.config';
+  } from '../configs/url.config';
 
 
 //get user
@@ -39,4 +39,13 @@ function* loginUser(disp) {
 
 export function* loginUserActionWatcher() {
   yield takeLatest('LOGIN USER', loginUser);
+}
+
+//logout user
+function* logoutUser() {
+  yield put({type: 'LOGOUT USER'})
+}
+
+export function* logoutUserActionWatcher() {
+  yield takeLatest('LOGOUT', logoutUser)
 }

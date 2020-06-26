@@ -17,11 +17,11 @@ const styleIcon = {
 
 const Menu = (props) => {
   let [addRoom, setAddRoom] = useState(false);
-  let {socket} = props;
+  let {socket } = props;
   return (
     <div className="Menu">
       <div className="Menu-account">
-        <Account />
+          <Account />
       </div>
       <div className="Menu-search">
         <SearchOutlinedIcon style={styleIcon} />

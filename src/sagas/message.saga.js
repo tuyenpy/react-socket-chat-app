@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import {
   getMessage,
   sendMessage
-} from '../config/url.config';
+} from '../configs/url.config';
 
 //get message action
 function* getMessages(disp) {

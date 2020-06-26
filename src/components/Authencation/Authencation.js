@@ -5,13 +5,14 @@ import {Switch, Route } from 'react-router-dom';
 import Login from '../Login/Login';
 import Signup from '../Signup/Signup';
 
-const Authencation = () => {
+const Authencation = (props) => {
+  let {cookies} = props;
   return(
     <div className="Authencation">
       
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/" render={() => <Login cookies={cookies}/>} />
+        <Route path="/signup" render={() => <Signup cookies={cookies} />} />
       </Switch>
     </div>
   )

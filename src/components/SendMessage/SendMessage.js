@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { sendMessage } from '../../actions/message.action';
 
 import './SendMessage.css';
-import SendIcon from '@material-ui/icons/Send';
 
 const refInput = React.createRef();
 
@@ -15,21 +14,23 @@ let SendMessage = (props) => {
       userName: user.user.name,
       text: refInput.current.value,
       room: room
-    })
+    });
+    refInput.current.value = "";
     socket.emit('send-message');
   }
   return (
     <div className="SendMessage">
       <div className="SendMessage-input">
-        <input type="text"
-          ref={refInput}
-          placeholder="type a message"
-        />
+        <form onSubmit={onSend}>
+          <input type="text"
+            ref={refInput}
+            placeholder="type a message"
+          />
+
+        </form>
 
       </div>
-      <div className="SendMessage-button" onClick={onSend}>
-        <SendIcon style={{color: "#CBCED1"}}/>
-      </div>
+
     </div>
   )
 }

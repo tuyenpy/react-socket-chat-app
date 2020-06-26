@@ -1,0 +1,13 @@
+.Account {
+  position: relative;
+}
+.Account-avatar {
+  padding: 4px 6px;
+  border-radius: 2px;
+  background-color: #ffffff;
+}
+
+.Account-info {
+  position: absolute;
+  z-index: 12;
+}

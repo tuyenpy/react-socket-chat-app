@@ -16,6 +16,9 @@ const Chat = (props) => {
   },[room, socket])
   return (
     <div className="Chat">
+      {
+        room && <p>You have joined the <strong><u>{room}</u></strong> room</p>
+      }
       <MessageList socket={socket} room={room} />
       <SendMessage socket={socket} room={room}/>
     </div>

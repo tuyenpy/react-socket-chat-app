@@ -1,29 +1,32 @@
 import React from 'react';
-import { withCookies } from 'react-cookie';
-import { BrowserRouter } from 'react-router-dom';
+import {
+  Switch,
+  Route,
+
+} from 'react-router-dom';
 
 import './App.css';
-import Authencation from './component/Authencation/Authencation';
-import AppContainer from './component/AppContainer/AppContainer';
+import AppContainer from './components/AppContainer/AppContainer';
+import Login from './components/Login/Login';
+import Signup from './components/Signup/Signup';
 
-
-const App = (props) => {
-  let { cookies } = props;
+const App = () => {
   return (
-    <BrowserRouter>
       <div className="App">
-        {
-          cookies.get('userID') ? (
-            <AppContainer />
-
-          ) : (
-              <Authencation />
-            )
-        }
-
+        <Switch>
+          <Route exact path='/' 
+              render={({location}) => 
+              <AppContainer location={location}/>}
+          />
+          <Route path='/login' 
+              render={() => <Login />}
+          />
+          <Route path='/signup'
+              render={() => <Signup />}
+          />
+        </Switch>
       </div>
-    </BrowserRouter>
   )
 }
 
-export default withCookies(App);
+export default App;

@@ -83,3 +83,10 @@
 .Signup-form-link a:hover {
   text-decoration: underline;
 }
+
+.Signup-form-group > p {
+  color: #f18912;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 12px;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ChannelItem.css';
 
 const colorGird = [
@@ -15,12 +16,12 @@ const ChannelItem = (props) => {
   let stateColor = Math.floor((Math.random() / 2 * 10));
   let href = `/?room=${name}`;
   return (
-    <a href={href} className="roomLink">
+    <Link to={href} className="roomLink">
       <div className="ChannelItem">
         <p className={colorGird[stateColor]}>{nameRoom[0]}</p>
         <p>{`# ${name || nameRoom}`}</p>
       </div>
-    </a>
+    </Link>
   )
 }
 

@@ -26,7 +26,7 @@ let MessageList = (props) => {
   return(
     <div className="MessageList">
       {
-         messages.messages &&  messages.messages.map((message, index) => 
+         messages && messages.messages &&  messages.messages.map((message, index) => 
             <MessageItem message={message} key={index} />)
       }
     </div>
